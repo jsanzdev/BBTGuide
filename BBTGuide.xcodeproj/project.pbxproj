@@ -11,6 +11,12 @@
 		09418CB2293B609B000B34EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CB1293B609B000B34EF /* ContentView.swift */; };
 		09418CB4293B609C000B34EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09418CB3293B609C000B34EF /* Assets.xcassets */; };
 		09418CB7293B609C000B34EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09418CB6293B609C000B34EF /* Preview Assets.xcassets */; };
+		09418CC5293B61B0000B34EF /* BigBang.json in Resources */ = {isa = PBXBuildFile; fileRef = 09418CC4293B61B0000B34EF /* BigBang.json */; };
+		09418CC7293B6562000B34EF /* ModelDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CC6293B6562000B34EF /* ModelDefinition.swift */; };
+		09418CC9293B6728000B34EF /* ModelPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CC8293B6728000B34EF /* ModelPersistence.swift */; };
+		09418CCB293B6995000B34EF /* EpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CCA293B6995000B34EF /* EpisodesViewModel.swift */; };
+		09418CCD293B7ABC000B34EF /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CCC293B7ABC000B34EF /* EpisodeCell.swift */; };
+		09418CCF293B7D1D000B34EF /* SeasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CCE293B7D1D000B34EF /* SeasonCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		09418CB1293B609B000B34EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		09418CB3293B609C000B34EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09418CB6293B609C000B34EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		09418CC4293B61B0000B34EF /* BigBang.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BigBang.json; sourceTree = "<group>"; };
+		09418CC6293B6562000B34EF /* ModelDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDefinition.swift; sourceTree = "<group>"; };
+		09418CC8293B6728000B34EF /* ModelPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPersistence.swift; sourceTree = "<group>"; };
+		09418CCA293B6995000B34EF /* EpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewModel.swift; sourceTree = "<group>"; };
+		09418CCC293B7ABC000B34EF /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		09418CCE293B7D1D000B34EF /* SeasonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +63,13 @@
 		09418CAE293B609B000B34EF /* BBTGuide */ = {
 			isa = PBXGroup;
 			children = (
-				09418CAF293B609B000B34EF /* BBTGuideApp.swift */,
-				09418CB1293B609B000B34EF /* ContentView.swift */,
-				09418CB3293B609C000B34EF /* Assets.xcassets */,
+				09418CBE293B6148000B34EF /* Views */,
+				09418CBF293B614E000B34EF /* ViewComponents */,
+				09418CC1293B6163000B34EF /* ViewModels */,
+				09418CC0293B615C000B34EF /* Model */,
+				09418CC2293B6174000B34EF /* Components */,
+				09418CBD293B613F000B34EF /* Resources */,
+				09418CC3293B6183000B34EF /* System */,
 				09418CB5293B609C000B34EF /* Preview Content */,
 			);
 			path = BBTGuide;
@@ -65,6 +81,64 @@
 				09418CB6293B609C000B34EF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		09418CBD293B613F000B34EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				09418CC4293B61B0000B34EF /* BigBang.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		09418CBE293B6148000B34EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				09418CB1293B609B000B34EF /* ContentView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		09418CBF293B614E000B34EF /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				09418CCC293B7ABC000B34EF /* EpisodeCell.swift */,
+				09418CCE293B7D1D000B34EF /* SeasonCell.swift */,
+			);
+			name = ViewComponents;
+			sourceTree = "<group>";
+		};
+		09418CC0293B615C000B34EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09418CC6293B6562000B34EF /* ModelDefinition.swift */,
+				09418CC8293B6728000B34EF /* ModelPersistence.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		09418CC1293B6163000B34EF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				09418CCA293B6995000B34EF /* EpisodesViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		09418CC2293B6174000B34EF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		09418CC3293B6183000B34EF /* System */ = {
+			isa = PBXGroup;
+			children = (
+				09418CAF293B609B000B34EF /* BBTGuideApp.swift */,
+				09418CB3293B609C000B34EF /* Assets.xcassets */,
+			);
+			name = System;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09418CB7293B609C000B34EF /* Preview Assets.xcassets in Resources */,
+				09418CC5293B61B0000B34EF /* BigBang.json in Resources */,
 				09418CB4293B609C000B34EF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,7 +213,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				09418CB2293B609B000B34EF /* ContentView.swift in Sources */,
+				09418CCF293B7D1D000B34EF /* SeasonCell.swift in Sources */,
+				09418CCB293B6995000B34EF /* EpisodesViewModel.swift in Sources */,
+				09418CC7293B6562000B34EF /* ModelDefinition.swift in Sources */,
 				09418CB0293B609B000B34EF /* BBTGuideApp.swift in Sources */,
+				09418CC9293B6728000B34EF /* ModelPersistence.swift in Sources */,
+				09418CCD293B7ABC000B34EF /* EpisodeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
