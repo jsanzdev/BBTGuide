@@ -12,12 +12,34 @@ struct ContentView: View {
     @EnvironmentObject var episodesVM:EpisodesViewModel
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+        NavigationStack {
+            List {
                 ForEach(episodesVM.seasonsSection, id:\.self) { episodes in
-                    SeasonCell(season: episodes)
+                    Section {
+                        ForEach(episodes) { episode in
+                            Text(episode.name)
+                        }
+                    } header: {
+                        HStack {
+                            Image("season\(episodes.first!.season)")
+                            VStack {
+                                Text("Season \(episodes.first!.season)")
+                                HStack {
+                                    Text("Watched ")
+                                    Image(systemName: "checkmark.square")
+                                }
+                            }
+                        }
+                        
+                    }
                 }
             }
+            .listStyle(.sidebar)
+            .navigationDestination(for: BigBang.self) { episode in
+                
+            }
+            .navigationTitle("The Big Bang Theory")
+            .searchable(text: $episodesVM.search)
         }
     }
 }
