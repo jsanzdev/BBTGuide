@@ -17,12 +17,14 @@ struct ContentView: View {
                 ForEach(episodesVM.seasonsSection, id:\.self) { episodes in
                     Section {
                         ForEach(episodes) { episode in
-                            Text(episode.name)
+                            NavigationLink(value: episode) {
+                                EpisodeCell(episode: episode)
+                            }
                         }
                     } header: {
                         HStack {
                             Image("season\(episodes.first!.season)")
-                            VStack {
+                            VStack (alignment: .leading){
                                 Text("Season \(episodes.first!.season)")
                                 HStack {
                                     Text("Watched ")
@@ -36,7 +38,7 @@ struct ContentView: View {
             }
             .listStyle(.sidebar)
             .navigationDestination(for: BigBang.self) { episode in
-                
+                EpisodeDetailView(detailVM: DetailViewModel(episode: episode))
             }
             .navigationTitle("The Big Bang Theory")
             .searchable(text: $episodesVM.search)

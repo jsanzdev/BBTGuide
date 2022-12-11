@@ -15,7 +15,11 @@ struct EpisodeCell: View {
             VStack(alignment: .leading) {
                 Text(episode.name)
                     .font(.headline)
-                Text("\(episode.runtime)")
+                HStack {
+                    Text("Air date: \(episode.airdate)")
+                    Text("Runtime: \(episode.runtime)")
+                }
+                
             }
         }
     }
