@@ -12,10 +12,15 @@ struct SeasonCell: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
-                Image("season\(season.first!.number)")
-                Text("Season \(season.first!.number)")
-                    .font(.headline)
+            HStack() {
+                Image("season\(season.first!.season)")
+                VStack (alignment: .leading){
+                    Text("Season \(season.first!.season)")
+                    HStack {
+                        Text("Watched ")
+                        Image(systemName: "checkmark.square")
+                    }
+                }
             }
         }
     }

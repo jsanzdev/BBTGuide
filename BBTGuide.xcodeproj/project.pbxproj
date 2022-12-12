@@ -18,9 +18,11 @@
 		09418CCD293B7ABC000B34EF /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CCC293B7ABC000B34EF /* EpisodeCell.swift */; };
 		09418CCF293B7D1D000B34EF /* SeasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CCE293B7D1D000B34EF /* SeasonCell.swift */; };
 		09418CD1293BBCFB000B34EF /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CD0293BBCFB000B34EF /* EpisodeDetailView.swift */; };
-		09418CD3293BBD19000B34EF /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CD2293BBD19000B34EF /* TabView.swift */; };
+		09418CD3293BBD19000B34EF /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CD2293BBD19000B34EF /* TabController.swift */; };
 		09418CD5293BBD25000B34EF /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CD4293BBD25000B34EF /* FavoritesView.swift */; };
 		09418CD7293BBD37000B34EF /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CD6293BBD37000B34EF /* DetailViewModel.swift */; };
+		097041232947AC7B007910B8 /* SeasonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097041222947AC7B007910B8 /* SeasonsView.swift */; };
+		097041252947AD1B007910B8 /* SeasonsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097041242947AD1B007910B8 /* SeasonsDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,9 +38,11 @@
 		09418CCC293B7ABC000B34EF /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		09418CCE293B7D1D000B34EF /* SeasonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonCell.swift; sourceTree = "<group>"; };
 		09418CD0293BBCFB000B34EF /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
-		09418CD2293BBD19000B34EF /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		09418CD2293BBD19000B34EF /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		09418CD4293BBD25000B34EF /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		09418CD6293BBD37000B34EF /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		097041222947AC7B007910B8 /* SeasonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsView.swift; sourceTree = "<group>"; };
+		097041242947AD1B007910B8 /* SeasonsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				09418CB1293B609B000B34EF /* ContentView.swift */,
+				097041222947AC7B007910B8 /* SeasonsView.swift */,
+				097041242947AD1B007910B8 /* SeasonsDetailView.swift */,
 				09418CD0293BBCFB000B34EF /* EpisodeDetailView.swift */,
-				09418CD2293BBD19000B34EF /* TabView.swift */,
+				09418CD2293BBD19000B34EF /* TabController.swift */,
 				09418CD4293BBD25000B34EF /* FavoritesView.swift */,
 			);
 			name = Views;
@@ -227,12 +233,14 @@
 				09418CD5293BBD25000B34EF /* FavoritesView.swift in Sources */,
 				09418CB2293B609B000B34EF /* ContentView.swift in Sources */,
 				09418CD1293BBCFB000B34EF /* EpisodeDetailView.swift in Sources */,
+				097041252947AD1B007910B8 /* SeasonsDetailView.swift in Sources */,
+				097041232947AC7B007910B8 /* SeasonsView.swift in Sources */,
 				09418CCF293B7D1D000B34EF /* SeasonCell.swift in Sources */,
 				09418CCB293B6995000B34EF /* EpisodesViewModel.swift in Sources */,
 				09418CC7293B6562000B34EF /* ModelDefinition.swift in Sources */,
 				09418CB0293B609B000B34EF /* BBTGuideApp.swift in Sources */,
 				09418CC9293B6728000B34EF /* ModelPersistence.swift in Sources */,
-				09418CD3293BBD19000B34EF /* TabView.swift in Sources */,
+				09418CD3293BBD19000B34EF /* TabController.swift in Sources */,
 				09418CD7293BBD37000B34EF /* DetailViewModel.swift in Sources */,
 				09418CCD293B7ABC000B34EF /* EpisodeCell.swift in Sources */,
 			);

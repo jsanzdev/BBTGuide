@@ -13,7 +13,7 @@ struct BBTGuideApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabController()
                 .environmentObject(episodesVM)
         }
     }
