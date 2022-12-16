@@ -38,7 +38,7 @@ struct ContentView: View {
             }
             .listStyle(.sidebar)
             .navigationDestination(for: BigBang.self) { episode in
-                EpisodeDetailView(detailVM: DetailViewModel(episode: episode))
+                EpisodeDetailView(detailVM: DetailViewModel(episode: episode), dataVM: UserDataViewModel(episode: episode, episodeData: episodesVM.getDataByID(id: episode.id) ?? EpisodeData(id: episode.id, watched: false, favorite: false, score: 0, notes: "")))
             }
             .navigationTitle("The Big Bang Theory")
             .searchable(text: $episodesVM.search)

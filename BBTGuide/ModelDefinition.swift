@@ -25,3 +25,15 @@ extension BigBang {
     
     static let seasonTest = [episodeTest, episodeTest]
 }
+
+extension EpisodeData {
+    static let episodeDataTest = EpisodeData(id: 2913, watched: false, favorite: false, score: 4, notes: "This is a test to see if it takes this notes :)")
+}
+
+struct EpisodeData: Codable {
+    let id: Int
+    let watched:Bool
+    let favorite:Bool
+    let score:Int
+    let notes:String
+}

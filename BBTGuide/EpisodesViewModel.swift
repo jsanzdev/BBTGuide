@@ -13,6 +13,11 @@ final class EpisodesViewModel:ObservableObject {
     let persistence = ModelPersistence()
     
     @Published var episodes:[BigBang]
+    @Published var userData:[EpisodeData] {
+        didSet {
+            persistence.saveData(userData: userData)
+        }
+    }
     @Published var search = ""
     
     var orderedEpisodes:[BigBang] {
@@ -45,5 +50,23 @@ final class EpisodesViewModel:ObservableObject {
     
     init() {
         self.episodes = persistence.loadEpisodes()
+        self.userData = persistence.loadData()
     }
+    
+    func updateEpisode(episode: BigBang) {
+        if let index = episodes.firstIndex(where: {$0.id == episode.id }) {
+            episodes[index] = episode
+        }
+    }
+    
+    func updateUD(episodeData: EpisodeData) {
+        if let index = userData.firstIndex(where: {$0.id == episodeData.id }) {
+            userData[index] = episodeData
+        }
+    }
+    
+    func getDataByID(id:Int) -> EpisodeData? {
+        userData.first(where: {$0.id == id })
+    }
+    
 }

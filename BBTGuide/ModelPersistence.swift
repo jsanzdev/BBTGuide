@@ -9,14 +9,14 @@ import SwiftUI
 
 extension URL {
     static let episodeDataURL = Bundle.main.url(forResource: "BigBang", withExtension: "json")!
+    static let userDataURL = URL.documentsDirectory.appending(component: "userdata").appendingPathExtension("json")
 }
 
 
 final class ModelPersistence {
     func loadEpisodes(url:URL = .episodeDataURL) -> [BigBang] {
-        let urlData = URL.episodeDataURL
         do {
-            let data = try Data(contentsOf: urlData)
+            let data = try Data(contentsOf: url)
             return try JSONDecoder().decode([BigBang].self, from: data)
         } catch {
             print("Error en la carga \(error)")
@@ -24,8 +24,25 @@ final class ModelPersistence {
         }
     }
     
-    
-    func saveFavorites(episodes:[BigBang]) {
-        // here we will save the favorite eposidoes.
+    func loadData() -> [EpisodeData] {
+        do {
+            let data = try Data(contentsOf: .userDataURL)
+            return try JSONDecoder().decode([EpisodeData].self, from: data)
+        } catch {
+            print("Error loading the user data \(error)")
+            return []
+        }
     }
+
+    func saveData(userData: [EpisodeData]) {
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(userData)
+            try data.write(to: .userDataURL, options: [.atomic, .completeFileProtection])
+        } catch {
+            //TODO -> Change this for a proper error
+            print("Error saving the user data \(error)")
+        }
+    }
+    
 }

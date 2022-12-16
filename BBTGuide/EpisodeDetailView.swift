@@ -10,6 +10,7 @@ import SwiftUI
 struct EpisodeDetailView: View {
     @EnvironmentObject var episodesVM:EpisodesViewModel
     @ObservedObject var detailVM:DetailViewModel
+    @ObservedObject var dataVM:UserDataViewModel
     
     @Environment(\.colorScheme) var colorScheme
 
@@ -60,10 +61,16 @@ struct EpisodeDetailView: View {
                 .padding()
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("Notes")
-                        .font(.headline)
+                    HStack {
+                        Text("Notes")
+                            .font(.headline)
                         .padding(.bottom, 10)
-                    TextField("Here is some text for the notes", text: $detailVM.summary, axis: .vertical)
+                        Spacer()
+                        Button("Save") {
+                            episodesVM.updateUD(episodeData: dataVM.saveData(episodeData: dataVM.episodeData, episode: detailVM.episode))
+                        }
+                    }
+                    TextField("Here is some text for the notes", text: $dataVM.notes, axis: .vertical)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -79,7 +86,7 @@ struct EpisodeDetailView: View {
 struct EpisodeDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            EpisodeDetailView(detailVM: DetailViewModel(episode: .episodeTest))
+            EpisodeDetailView(detailVM: DetailViewModel(episode: .episodeTest), dataVM: UserDataViewModel(episode: .episodeTest, episodeData: .episodeDataTest))
                 .environmentObject(EpisodesViewModel())
         }
     }

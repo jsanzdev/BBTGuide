@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0903236B294BA0600097FA10 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903236A294BA0600097FA10 /* UserDataViewModel.swift */; };
 		09418CB0293B609B000B34EF /* BBTGuideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CAF293B609B000B34EF /* BBTGuideApp.swift */; };
 		09418CB2293B609B000B34EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CB1293B609B000B34EF /* ContentView.swift */; };
 		09418CB4293B609C000B34EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09418CB3293B609C000B34EF /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0903236A294BA0600097FA10 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		09418CAC293B609B000B34EF /* BBTGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBTGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09418CAF293B609B000B34EF /* BBTGuideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBTGuideApp.swift; sourceTree = "<group>"; };
 		09418CB1293B609B000B34EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				09418CCA293B6995000B34EF /* EpisodesViewModel.swift */,
 				09418CD6293BBD37000B34EF /* DetailViewModel.swift */,
+				0903236A294BA0600097FA10 /* UserDataViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				097041232947AC7B007910B8 /* SeasonsView.swift in Sources */,
 				09418CCF293B7D1D000B34EF /* SeasonCell.swift in Sources */,
 				09418CCB293B6995000B34EF /* EpisodesViewModel.swift in Sources */,
+				0903236B294BA0600097FA10 /* UserDataViewModel.swift in Sources */,
 				09418CC7293B6562000B34EF /* ModelDefinition.swift in Sources */,
 				09418CB0293B609B000B34EF /* BBTGuideApp.swift in Sources */,
 				09418CC9293B6728000B34EF /* ModelPersistence.swift in Sources */,

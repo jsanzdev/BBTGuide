@@ -12,12 +12,12 @@ final class DetailViewModel:ObservableObject {
     
     let episode:BigBang
     
+    // Episode
     @Published var name = ""
     @Published var season = 0
     @Published var airdate = ""
     @Published var runtime = 0
     @Published var summary = ""
-    
     
     init(episode:BigBang) {
         self.episode = episode
