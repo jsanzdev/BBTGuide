@@ -10,18 +10,39 @@ import SwiftUI
 struct SeasonCell: View {
     let season:[BigBang]
     
+    @Environment(\.colorScheme) var colorScheme
+    
+    var fillColor: Color {
+        if colorScheme == .dark {
+            return Color.black
+        } else {
+            return Color.white
+        }
+    }
+    
     var body: some View {
         HStack {
-            HStack() {
+            ZStack(alignment: .bottom) {
                 Image("season\(season.first!.season)")
-                VStack (alignment: .leading){
+                    .resizable()
+                    .scaledToFit()
+                HStack (){
                     Text("Season \(season.first!.season)")
+                        .bold()
+                    Spacer()
                     HStack {
-                        Text("Watched ")
-                        Image(systemName: "checkmark.square")
+                        Image(systemName: "eye.circle.fill")
                     }
+                    .bold()
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(10)
+                .background {
+                    Rectangle()
+                        .fill(fillColor.opacity(0.9))
                 }
             }
+            .cornerRadius(10)
         }
     }
 }

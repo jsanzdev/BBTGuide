@@ -16,6 +16,14 @@ struct SeasonsView: View {
                 ForEach(episodesVM.seasonsSection, id:\.self) { episodes in
                     NavigationLink(value: episodes) {
                         SeasonCell(season: episodes)
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "eye.circle.fill")
+                                }
+                            }
+                            .tint(.green)
                     }
                 }
             }

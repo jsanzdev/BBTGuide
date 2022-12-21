@@ -13,13 +13,23 @@ struct EpisodeCell: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(episode.name)
-                    .font(.headline)
                 HStack {
-                    Text("Air date: \(episode.airdate)")
-                    Text("Runtime: \(episode.runtime)")
+                    Text(episode.name)
+                        .font(.headline)
+                    Spacer()
+                    Text("⭐️⭐️⭐️⭐️⭐️")
                 }
-                
+                . padding(.bottom, 10)
+                HStack {
+                    VStack (alignment: .leading) {
+                        Text("Runtime: \(episode.runtime)")
+                        Text("Air date: \(episode.airdate)")
+                    }
+                    .font(.caption)
+                    Spacer()
+                    Image(systemName: "eye.circle.fill")
+                    Image(systemName: "star.circle.fill")
+                }
             }
         }
     }
