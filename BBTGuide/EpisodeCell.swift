@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct EpisodeCell: View {
+    
     let episode:BigBang
+    let episodeData:EpisodeData
     
     var body: some View {
         HStack {
@@ -17,7 +19,7 @@ struct EpisodeCell: View {
                     Text(episode.name)
                         .font(.headline)
                     Spacer()
-                    Text("⭐️⭐️⭐️⭐️⭐️")
+                    RatingViewCell(rating: episodeData.score)
                 }
                 . padding(.bottom, 10)
                 HStack {
@@ -37,6 +39,6 @@ struct EpisodeCell: View {
 
 struct EpisodeCell_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeCell(episode: .episodeTest)
+        EpisodeCell(episode: .episodeTest, episodeData: .episodeDataTest)
     }
 }

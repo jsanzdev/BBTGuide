@@ -16,7 +16,7 @@ struct SeasonsDetailView: View {
         List {
             ForEach(season, id:\.self) { episode in
                 NavigationLink(value: episode) {
-                    EpisodeCell(episode: episode)
+                    EpisodeCell(episode: episode, episodeData: episodesVM.getDataByID(id: episode.id) ?? EpisodeData(id: episode.id, watched: false, favorite: false, score: 0, notes: ""))
                         .swipeActions {
                             Button {
                                 

@@ -22,6 +22,22 @@ struct EpisodeDetailView: View {
         }
     }
     
+    var favoriteColor: Color {
+        if dataVM.favorite {
+            return Color.yellow
+        } else {
+            return Color.gray
+        }
+    }
+    
+    var watchedColor : Color {
+        if dataVM.watched {
+            return Color.green
+        } else {
+            return Color.gray
+        }
+    }
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -30,6 +46,30 @@ struct EpisodeDetailView: View {
                         Image(detailVM.episode.image)
                             .resizable()
                             .scaledToFill()
+                        HStack {
+                            RatingView(rating: $dataVM.score)
+                                .font(.system(size: 30, weight: .bold))
+                            Spacer()
+                            HStack {
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "star.circle.fill")
+                                        .font(.system(size: 40, weight: .bold))
+                                }
+                                .tint(favoriteColor)
+                                .controlSize(.large)
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName:"eye.circle.fill")
+                                        .font(.system(size: 40, weight: .bold))
+                                }
+                                .tint(watchedColor)
+                                .controlSize(.large)
+                            }
+                        }
+                        .padding(.bottom, 210)
                         VStack (alignment: .leading){
                             Text(detailVM.name)
                                 .font(.title)
@@ -51,15 +91,30 @@ struct EpisodeDetailView: View {
                     }
                     .frame(maxWidth: .infinity)
                 }
-                Spacer()
-                VStack (alignment: .leading) {
-                    Text("Summary")
-                        .font(.headline)
-                        .padding(.bottom, 10)
-                    Text(detailVM.summary)
-                }
-                .padding()
-                Spacer()
+//                HStack {
+//                    RatingView(rating: $dataVM.score)
+//                        .font(.system(size: 30, weight: .bold))
+//                    Spacer()
+//                    HStack {
+//                        Button {
+//
+//                        } label: {
+//                            Image(systemName: "star.circle.fill")
+//                                .font(.system(size: 40, weight: .bold))
+//                        }
+//                        .tint(favoriteColor)
+//                        .controlSize(.large)
+//                        Button {
+//
+//                        } label: {
+//                            Image(systemName:"eye.circle.fill")
+//                                .font(.system(size: 40, weight: .bold))
+//                        }
+//                        .tint(watchedColor)
+//                        .controlSize(.large)
+//                    }
+//                }
+//                .padding()
                 VStack(alignment: .leading) {
                     HStack {
                         Text("Notes")
@@ -74,10 +129,19 @@ struct EpisodeDetailView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
-                .background {
-                    Rectangle()
-                        .fill(.yellow.opacity(0.3))
+//                .background {
+//                    Rectangle()
+//                        .fill(.yellow.opacity(0.1))
+//                }
+                Spacer()
+                VStack (alignment: .leading) {
+                    Text("Summary")
+                        .font(.headline)
+                        .padding(.bottom, 10)
+                    Text(detailVM.summary)
                 }
+                .padding()
+                Spacer()
             }
         }
     }

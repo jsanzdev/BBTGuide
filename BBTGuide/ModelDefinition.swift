@@ -5,7 +5,7 @@
 //  Created by Jesus Sanz on 3/12/22.
 //
 
-import Foundation
+import SwiftUI
 
 struct BigBang: Codable, Identifiable, Hashable {
     let id: Int

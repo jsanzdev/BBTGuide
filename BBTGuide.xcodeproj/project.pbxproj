@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0903236B294BA0600097FA10 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903236A294BA0600097FA10 /* UserDataViewModel.swift */; };
+		09395CCA2953657100F3EC3D /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09395CC92953657100F3EC3D /* RatingView.swift */; };
+		09395CCC295368C000F3EC3D /* RatingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09395CCB295368C000F3EC3D /* RatingViewCell.swift */; };
 		09418CB0293B609B000B34EF /* BBTGuideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CAF293B609B000B34EF /* BBTGuideApp.swift */; };
-		09418CB2293B609B000B34EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09418CB1293B609B000B34EF /* ContentView.swift */; };
 		09418CB4293B609C000B34EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09418CB3293B609C000B34EF /* Assets.xcassets */; };
 		09418CB7293B609C000B34EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09418CB6293B609C000B34EF /* Preview Assets.xcassets */; };
 		09418CC5293B61B0000B34EF /* BigBang.json in Resources */ = {isa = PBXBuildFile; fileRef = 09418CC4293B61B0000B34EF /* BigBang.json */; };
@@ -28,9 +29,10 @@
 
 /* Begin PBXFileReference section */
 		0903236A294BA0600097FA10 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
+		09395CC92953657100F3EC3D /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		09395CCB295368C000F3EC3D /* RatingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewCell.swift; sourceTree = "<group>"; };
 		09418CAC293B609B000B34EF /* BBTGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBTGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09418CAF293B609B000B34EF /* BBTGuideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBTGuideApp.swift; sourceTree = "<group>"; };
-		09418CB1293B609B000B34EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		09418CB3293B609C000B34EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09418CB6293B609C000B34EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		09418CC4293B61B0000B34EF /* BigBang.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BigBang.json; sourceTree = "<group>"; };
@@ -108,7 +110,6 @@
 		09418CBE293B6148000B34EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				09418CB1293B609B000B34EF /* ContentView.swift */,
 				097041222947AC7B007910B8 /* SeasonsView.swift */,
 				097041242947AD1B007910B8 /* SeasonsDetailView.swift */,
 				09418CD0293BBCFB000B34EF /* EpisodeDetailView.swift */,
@@ -123,6 +124,8 @@
 			children = (
 				09418CCC293B7ABC000B34EF /* EpisodeCell.swift */,
 				09418CCE293B7D1D000B34EF /* SeasonCell.swift */,
+				09395CC92953657100F3EC3D /* RatingView.swift */,
+				09395CCB295368C000F3EC3D /* RatingViewCell.swift */,
 			);
 			name = ViewComponents;
 			sourceTree = "<group>";
@@ -234,8 +237,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				09418CD5293BBD25000B34EF /* FavoritesView.swift in Sources */,
-				09418CB2293B609B000B34EF /* ContentView.swift in Sources */,
 				09418CD1293BBCFB000B34EF /* EpisodeDetailView.swift in Sources */,
+				09395CCA2953657100F3EC3D /* RatingView.swift in Sources */,
 				097041252947AD1B007910B8 /* SeasonsDetailView.swift in Sources */,
 				097041232947AC7B007910B8 /* SeasonsView.swift in Sources */,
 				09418CCF293B7D1D000B34EF /* SeasonCell.swift in Sources */,
@@ -247,6 +250,7 @@
 				09418CD3293BBD19000B34EF /* TabController.swift in Sources */,
 				09418CD7293BBD37000B34EF /* DetailViewModel.swift in Sources */,
 				09418CCD293B7ABC000B34EF /* EpisodeCell.swift in Sources */,
+				09395CCC295368C000F3EC3D /* RatingViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
