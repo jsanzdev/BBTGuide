@@ -25,6 +25,9 @@ final class ModelPersistence {
     }
     
     func loadData() -> [EpisodeData] {
+        if !FileManager.default.fileExists(atPath: URL.userDataURL.path()) {
+            createDataFile()
+        }
         do {
             let data = try Data(contentsOf: .userDataURL)
             return try JSONDecoder().decode([EpisodeData].self, from: data)
@@ -43,6 +46,15 @@ final class ModelPersistence {
             //TODO -> Change this for a proper error
             print("Error saving the user data \(error)")
         }
+    }
+    
+    func createDataFile() {
+        let episodes = loadEpisodes()
+        var userData:[EpisodeData] = []
+        for episode in episodes {
+            userData.append(EpisodeData(id: episode.id, watched: false, favorite: false, score: 0, notes: ""))
+        }
+        saveData(userData: userData)
     }
     
 }

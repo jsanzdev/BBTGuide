@@ -32,8 +32,8 @@ extension EpisodeData {
 
 struct EpisodeData: Codable {
     let id: Int
-    let watched:Bool
-    let favorite:Bool
-    let score:Int
-    let notes:String
+    var watched:Bool
+    var favorite:Bool
+    var score:Int
+    var notes:String
 }

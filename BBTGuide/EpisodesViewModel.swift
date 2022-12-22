@@ -65,8 +65,8 @@ final class EpisodesViewModel:ObservableObject {
         }
     }
     
-    func getDataByID(id:Int) -> EpisodeData? {
-        userData.first(where: {$0.id == id })
+    func getDataByID(id:Int) -> EpisodeData {
+        userData.first(where: {$0.id == id })!
     }
     
 }

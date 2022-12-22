@@ -14,11 +14,26 @@ final class UserDataViewModel:ObservableObject {
     let episodeData:EpisodeData
     
     @Published var id = 0
-    @Published var watched = false
-    @Published var favorite = false
-    @Published var score = 0
-    @Published var notes = ""
-    
+    @Published var watched:Bool {
+        didSet {
+            episodeVM.updateUD(episodeData: saveData(episodeData: episodeData))
+        }
+    }
+    @Published var favorite:Bool {
+        didSet {
+            episodeVM.updateUD(episodeData: saveData(episodeData: episodeData))
+        }
+    }
+    @Published var score:Int {
+        didSet {
+            episodeVM.updateUD(episodeData: saveData(episodeData: episodeData))
+        }
+    }
+    @Published var notes:String {
+        didSet {
+            episodeVM.updateUD(episodeData: saveData(episodeData: episodeData))
+        }
+    }
     
     init(episode:BigBang, episodeData:EpisodeData) {
         self.episodeData = episodeData
@@ -30,8 +45,8 @@ final class UserDataViewModel:ObservableObject {
     }
     
     
-    func saveData(episodeData:EpisodeData, episode:BigBang) -> EpisodeData {
-        return EpisodeData(id: episode.id, watched: watched, favorite: favorite, score: score, notes: notes)
+    func saveData(episodeData:EpisodeData) -> EpisodeData {
+        return EpisodeData(id: episodeData.id, watched: watched, favorite: favorite, score: score, notes: notes)
     }
     
     

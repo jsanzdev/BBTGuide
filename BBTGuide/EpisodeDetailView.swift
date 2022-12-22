@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EpisodeDetailView: View {
     @EnvironmentObject var episodesVM:EpisodesViewModel
+    @Environment(\.scenePhase) private var scenePhase
     @ObservedObject var detailVM:DetailViewModel
     @ObservedObject var dataVM:UserDataViewModel
     
@@ -46,84 +47,61 @@ struct EpisodeDetailView: View {
                         Image(detailVM.episode.image)
                             .resizable()
                             .scaledToFill()
-                        HStack {
-                            RatingView(rating: $dataVM.score)
-                                .font(.system(size: 30, weight: .bold))
-                            Spacer()
-                            HStack {
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "star.circle.fill")
-                                        .font(.system(size: 40, weight: .bold))
-                                }
-                                .tint(favoriteColor)
-                                .controlSize(.large)
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName:"eye.circle.fill")
-                                        .font(.system(size: 40, weight: .bold))
-                                }
-                                .tint(watchedColor)
-                                .controlSize(.large)
-                            }
-                        }
-                        .padding(.bottom, 210)
                         VStack (alignment: .leading){
-                            Text(detailVM.name)
-                                .font(.title)
-                                .bold()
-                            Text("Season \(detailVM.season)")
-                                .font(.headline)
                             HStack {
-                                Text("Air date: \(detailVM.airdate)")
+                                RatingView(rating: $dataVM.score)
+                                    .font(.system(size: 30, weight: .bold))
                                 Spacer()
-                                Text("Runtinme: \(detailVM.runtime)")
+                                HStack {
+                                    Button {
+                                        
+                                    } label: {
+                                        Image(systemName: "star.circle.fill")
+                                            .font(.system(size: 40, weight: .bold))
+                                    }
+                                    .tint(favoriteColor)
+                                    .controlSize(.large)
+                                    Button {
+                                        
+                                    } label: {
+                                        Image(systemName:"eye.circle.fill")
+                                            .font(.system(size: 40, weight: .bold))
+                                    }
+                                    .tint(watchedColor)
+                                    .controlSize(.large)
+                                }
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(10)
                         .background {
                             Rectangle()
-                                .fill(fillColor.opacity(0.5))
+                                .fill(fillColor.opacity(0.8))
                         }
                     }
                     .frame(maxWidth: .infinity)
                 }
-//                HStack {
-//                    RatingView(rating: $dataVM.score)
-//                        .font(.system(size: 30, weight: .bold))
-//                    Spacer()
-//                    HStack {
-//                        Button {
-//
-//                        } label: {
-//                            Image(systemName: "star.circle.fill")
-//                                .font(.system(size: 40, weight: .bold))
-//                        }
-//                        .tint(favoriteColor)
-//                        .controlSize(.large)
-//                        Button {
-//
-//                        } label: {
-//                            Image(systemName:"eye.circle.fill")
-//                                .font(.system(size: 40, weight: .bold))
-//                        }
-//                        .tint(watchedColor)
-//                        .controlSize(.large)
-//                    }
-//                }
-//                .padding()
                 VStack(alignment: .leading) {
+                    VStack (alignment: .leading){
+                        Text("Season \(detailVM.season)")
+                            .font(.headline)
+                        HStack {
+                            Text("Air date: \(detailVM.airdate)")
+                            Spacer()
+                            Text("Runtinme: \(detailVM.runtime)")
+                        }
+                    }
+                    .background{
+                        Rectangle()
+                            .fill(fillColor.opacity(0.8))
+                    }
+                    Spacer()
                     HStack {
                         Text("Notes")
                             .font(.headline)
                         .padding(.bottom, 10)
                         Spacer()
-                        Button("Save") {
-                            episodesVM.updateUD(episodeData: dataVM.saveData(episodeData: dataVM.episodeData, episode: detailVM.episode))
-                        }
+                        
                     }
                     TextField("Here is some text for the notes", text: $dataVM.notes, axis: .vertical)
                 }
@@ -141,8 +119,19 @@ struct EpisodeDetailView: View {
                     Text(detailVM.summary)
                 }
                 .padding()
-                Spacer()
+                .navigationTitle(detailVM.name)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            episodesVM.updateUD(episodeData: dataVM.saveData(episodeData: dataVM.episodeData))
+                        }
+                    }
+                }
             }
+        }
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { episodesVM.updateUD(episodeData: dataVM.saveData(episodeData: dataVM.episodeData)) }
         }
     }
 }
