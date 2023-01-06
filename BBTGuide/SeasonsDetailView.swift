@@ -10,16 +10,16 @@ import SwiftUI
 struct SeasonsDetailView: View {
     @EnvironmentObject var episodesVM:EpisodesViewModel
     
-    let season:[BigBang]
+    let season:[Episode]
     
     var body: some View {
         List {
             ForEach(season, id:\.self) { episode in
                 NavigationLink(value: episode) {
-                    EpisodeCell(episode: episode, episodeData: episodesVM.getDataByID(id: episode.id))
+                    EpisodeCell(episode: episode)
                         .swipeActions {
                             Button {
-                                
+                                DetailViewModel(episode: episode).toggleWatched()
                             } label: {
                                 Image(systemName: "eye.circle.fill")
                             }
@@ -27,6 +27,7 @@ struct SeasonsDetailView: View {
                         .tint(.green)
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button {
+                                DetailViewModel(episode: episode).toggleFav()
                                 
                             } label: {
                                 Image(systemName: "star.circle.fill")
@@ -37,9 +38,6 @@ struct SeasonsDetailView: View {
             }
         }
         .listStyle(.sidebar)
-        .navigationDestination(for: BigBang.self) { episode in
-            EpisodeDetailView(detailVM: DetailViewModel(episode: episode), dataVM: UserDataViewModel(episode: episode, episodeData: episodesVM.getDataByID(id: episode.id)))
-        }
         .navigationTitle("Season \(season.first!.season)")
         .searchable(text: $episodesVM.search)
     }

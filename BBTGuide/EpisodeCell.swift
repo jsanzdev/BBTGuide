@@ -9,8 +9,7 @@ import SwiftUI
 
 struct EpisodeCell: View {
     
-    let episode:BigBang
-    let episodeData:EpisodeData
+    let episode:Episode
     
     var body: some View {
         HStack {
@@ -19,7 +18,7 @@ struct EpisodeCell: View {
                     Text(episode.name)
                         .font(.headline)
                     Spacer()
-                    RatingViewCell(rating: episodeData.score)
+                    RatingViewCell(rating: episode.score)
                 }
                 . padding(.bottom, 10)
                 HStack {
@@ -29,8 +28,12 @@ struct EpisodeCell: View {
                     }
                     .font(.caption)
                     Spacer()
-                    Image(systemName: "eye.circle.fill")
-                    Image(systemName: "star.circle.fill")
+                    if (episode.watched) {
+                        Image(systemName: "eye.circle.fill")
+                    }
+                    if (episode.favorite) {
+                        Image(systemName: "star.circle.fill")
+                    }
                 }
             }
         }
@@ -39,6 +42,6 @@ struct EpisodeCell: View {
 
 struct EpisodeCell_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeCell(episode: .episodeTest, episodeData: .episodeDataTest)
+        EpisodeCell(episode: .episodeTest)
     }
 }

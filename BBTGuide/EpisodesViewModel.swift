@@ -8,25 +8,23 @@
 import SwiftUI
 
 final class EpisodesViewModel:ObservableObject {
-    
-    
     let persistence = ModelPersistence()
     
-    @Published var episodes:[BigBang]
-    @Published var userData:[EpisodeData] {
+    @Published var episodes:[Episode] {
         didSet {
-            persistence.saveData(userData: userData)
+            persistence.saveData(episodes: episodes)
         }
     }
+    
     @Published var search = ""
     
-    var orderedEpisodes:[BigBang] {
+    var orderedEpisodes:[Episode] {
         return episodes.sorted {
             $0.number < $1.number
         }
     }
     
-    var seasonsSection:[[BigBang]] {
+    var seasonsSection:[[Episode]] {
         Dictionary(grouping: episodes) { episode in
             episode.season
         }.values.sorted {
@@ -49,24 +47,20 @@ final class EpisodesViewModel:ObservableObject {
     }
     
     init() {
-        self.episodes = persistence.loadEpisodes()
-        self.userData = persistence.loadData()
+        self.episodes = persistence.loadData()
     }
     
-    func updateEpisode(episode: BigBang) {
+    func refresh() {
+        self.episodes = persistence.loadData()
+    }
+    
+    func updateEpisode(episode: Episode) {
         if let index = episodes.firstIndex(where: {$0.id == episode.id }) {
             episodes[index] = episode
         }
     }
     
-    func updateUD(episodeData: EpisodeData) {
-        if let index = userData.firstIndex(where: {$0.id == episodeData.id }) {
-            userData[index] = episodeData
-        }
+    func getEpisodeByID(id:Int) -> Episode {
+        episodes.first(where: {$0.id == id })!
     }
-    
-    func getDataByID(id:Int) -> EpisodeData {
-        userData.first(where: {$0.id == id })!
-    }
-    
 }

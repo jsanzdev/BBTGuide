@@ -9,22 +9,58 @@ import SwiftUI
 
 final class DetailViewModel:ObservableObject {
     let persistence = ModelPersistence()
+    let episodeVM = EpisodesViewModel()
     
-    let episode:BigBang
+    let episode:Episode
     
-    // Episode
-    @Published var name = ""
-    @Published var season = 0
-    @Published var airdate = ""
-    @Published var runtime = 0
-    @Published var summary = ""
     
-    init(episode:BigBang) {
+    @Published var watched:Bool {
+        didSet {
+            episodeVM.updateEpisode(episode: saveEpisode(episode: episode))
+        }
+    }
+    @Published var favorite:Bool {
+        didSet {
+            episodeVM.updateEpisode(episode: saveEpisode(episode: episode))
+        }
+    }
+    @Published var score:Int {
+        didSet {
+            episodeVM.updateEpisode(episode: saveEpisode(episode: episode))
+        }
+    }
+    @Published var notes:String {
+        didSet {
+            episodeVM.updateEpisode(episode: saveEpisode(episode: episode))
+        }
+    }
+    
+    init(episode:Episode) {
         self.episode = episode
-        name = episode.name
-        season = episode.season
-        airdate = episode.airdate
-        runtime = episode.runtime
-        summary = episode.summary
+        watched = episode.watched
+        favorite = episode.favorite
+        score = episode.score
+        notes = episode.notes
+        
+    }
+    
+    func toggleFav() {
+        if favorite {
+            favorite = false
+        } else {
+            favorite = true
+        }
+    }
+    
+    func toggleWatched() {
+        if watched {
+            watched = false
+        } else {
+            watched = true
+        }
+    }
+    
+    func saveEpisode(episode:Episode) -> Episode {
+        return Episode(id: episode.id, url: episode.url, name: episode.name, season: episode.season, number: episode.number, airdate: episode.airdate, runtime: episode.runtime, image: episode.image, summary: episode.summary, watched: watched, favorite: favorite, score: score, notes: notes)
     }
 }

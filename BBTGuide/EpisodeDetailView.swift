@@ -9,12 +9,12 @@ import SwiftUI
 
 struct EpisodeDetailView: View {
     @EnvironmentObject var episodesVM:EpisodesViewModel
-    @Environment(\.scenePhase) private var scenePhase
     @ObservedObject var detailVM:DetailViewModel
-    @ObservedObject var dataVM:UserDataViewModel
+    
+    @Environment(\.dismiss) var dismiss
     
     @Environment(\.colorScheme) var colorScheme
-
+    
     var fillColor: Color {
         if colorScheme == .dark {
             return Color.black
@@ -24,7 +24,7 @@ struct EpisodeDetailView: View {
     }
     
     var favoriteColor: Color {
-        if dataVM.favorite {
+        if detailVM.favorite {
             return Color.yellow
         } else {
             return Color.gray
@@ -32,7 +32,7 @@ struct EpisodeDetailView: View {
     }
     
     var watchedColor : Color {
-        if dataVM.watched {
+        if detailVM.watched {
             return Color.green
         } else {
             return Color.gray
@@ -49,12 +49,12 @@ struct EpisodeDetailView: View {
                             .scaledToFill()
                         VStack (alignment: .leading){
                             HStack {
-                                RatingView(rating: $dataVM.score)
+                                RatingView(rating: $detailVM.score)
                                     .font(.system(size: 30, weight: .bold))
                                 Spacer()
                                 HStack {
                                     Button {
-                                        
+                                        detailVM.toggleFav()
                                     } label: {
                                         Image(systemName: "star.circle.fill")
                                             .font(.system(size: 40, weight: .bold))
@@ -62,7 +62,7 @@ struct EpisodeDetailView: View {
                                     .tint(favoriteColor)
                                     .controlSize(.large)
                                     Button {
-                                        
+                                        detailVM.toggleWatched()
                                     } label: {
                                         Image(systemName:"eye.circle.fill")
                                             .font(.system(size: 40, weight: .bold))
@@ -83,55 +83,54 @@ struct EpisodeDetailView: View {
                 }
                 VStack(alignment: .leading) {
                     VStack (alignment: .leading){
-                        Text("Season \(detailVM.season)")
+                        Text("Season \(detailVM.episode.season) - Episode \(detailVM.episode.number)")
                             .font(.headline)
                         HStack {
-                            Text("Air date: \(detailVM.airdate)")
+                            Text("Air date: \(detailVM.episode.airdate)")
                             Spacer()
-                            Text("Runtinme: \(detailVM.runtime)")
+                            Text("Runtinme: \(detailVM.episode.runtime)")
                         }
                     }
-                    .background{
-                        Rectangle()
-                            .fill(fillColor.opacity(0.8))
-                    }
-                    Spacer()
-                    HStack {
-                        Text("Notes")
-                            .font(.headline)
-                        .padding(.bottom, 10)
-                        Spacer()
-                        
-                    }
-                    TextField("Here is some text for the notes", text: $dataVM.notes, axis: .vertical)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
-//                .background {
-//                    Rectangle()
-//                        .fill(.yellow.opacity(0.1))
-//                }
+                .background {
+                    Rectangle()
+                        .fill(.gray.opacity(0.3))
+                }
+                Spacer()
+                VStack(alignment: .leading) {
+                    Text("My Notes")
+                        .font(.headline)
+                        .padding(.bottom, 10)
+                    Spacer()
+                    TextField("Here is some text for the notes", text: $detailVM.notes, axis: .vertical)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background {
+                    Rectangle()
+                        .fill(.yellow.opacity(0.3))
+                }
                 Spacer()
                 VStack (alignment: .leading) {
                     Text("Summary")
                         .font(.headline)
                         .padding(.bottom, 10)
-                    Text(detailVM.summary)
+                    Text(detailVM.episode.summary)
                 }
                 .padding()
-                .navigationTitle(detailVM.name)
+                .navigationTitle(detailVM.episode.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
-                            episodesVM.updateUD(episodeData: dataVM.saveData(episodeData: dataVM.episodeData))
+                            episodesVM.updateEpisode(episode: detailVM.saveEpisode(episode: detailVM.episode))
+                            dismiss()
                         }
                     }
                 }
             }
-        }
-        .onChange(of: scenePhase) { phase in
-            if phase == .inactive { episodesVM.updateUD(episodeData: dataVM.saveData(episodeData: dataVM.episodeData)) }
         }
     }
 }
@@ -139,7 +138,7 @@ struct EpisodeDetailView: View {
 struct EpisodeDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            EpisodeDetailView(detailVM: DetailViewModel(episode: .episodeTest), dataVM: UserDataViewModel(episode: .episodeTest, episodeData: .episodeDataTest))
+            EpisodeDetailView(detailVM: DetailViewModel(episode: .episodeTest))
                 .environmentObject(EpisodesViewModel())
         }
     }

@@ -9,9 +9,10 @@ import SwiftUI
 
 struct SeasonsView: View {
     @EnvironmentObject var episodesVM:EpisodesViewModel
+    @State var path = NavigationPath()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 ForEach(episodesVM.seasonsSection, id:\.self) { episodes in
                     NavigationLink(value: episodes) {
@@ -22,6 +23,9 @@ struct SeasonsView: View {
             .listStyle(.sidebar)
             .navigationDestination(for: Episodes.self) { episodes in
                 SeasonsDetailView(season: episodes)
+            }
+            .navigationDestination(for: Episode.self) { episode in
+                EpisodeDetailView(detailVM: DetailViewModel(episode: episode))
             }
             .navigationTitle("The Big Bang Theory")
             .searchable(text: $episodesVM.search)

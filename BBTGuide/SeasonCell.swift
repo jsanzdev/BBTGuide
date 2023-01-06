@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SeasonCell: View {
-    let season:[BigBang]
+    let season:[Episode]
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -17,6 +17,21 @@ struct SeasonCell: View {
             return Color.black
         } else {
             return Color.white
+        }
+    }
+    
+    var SeasonWatched:Bool {
+        let episodeCount = season.count
+        var watchedCount = 0
+        for episode in season {
+            if episode.watched {
+                watchedCount += watchedCount
+            }
+        }
+        if episodeCount == watchedCount {
+            return true
+        } else {
+            return false
         }
     }
     
@@ -31,7 +46,9 @@ struct SeasonCell: View {
                         .bold()
                     Spacer()
                     HStack {
-                        Image(systemName: "eye.circle.fill")
+                        if (SeasonWatched) {
+                            Image(systemName: "eye.circle.fill")
+                        }
                     }
                     .bold()
                 }

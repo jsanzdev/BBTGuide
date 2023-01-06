@@ -14,33 +14,33 @@ extension URL {
 
 
 final class ModelPersistence {
-    func loadEpisodes(url:URL = .episodeDataURL) -> [BigBang] {
+    func loadTempEpisodes(url:URL = .episodeDataURL) -> [TempEpisode] {
         do {
             let data = try Data(contentsOf: url)
-            return try JSONDecoder().decode([BigBang].self, from: data)
+            return try JSONDecoder().decode([TempEpisode].self, from: data)
         } catch {
             print("Error en la carga \(error)")
             return []
         }
     }
     
-    func loadData() -> [EpisodeData] {
+    func loadData() -> [Episode] {
         if !FileManager.default.fileExists(atPath: URL.userDataURL.path()) {
             createDataFile()
         }
         do {
             let data = try Data(contentsOf: .userDataURL)
-            return try JSONDecoder().decode([EpisodeData].self, from: data)
+            return try JSONDecoder().decode([Episode].self, from: data)
         } catch {
             print("Error loading the user data \(error)")
             return []
         }
     }
 
-    func saveData(userData: [EpisodeData]) {
+    func saveData(episodes: [Episode]) {
         do {
             let encoder = JSONEncoder()
-            let data = try encoder.encode(userData)
+            let data = try encoder.encode(episodes)
             try data.write(to: .userDataURL, options: [.atomic, .completeFileProtection])
         } catch {
             //TODO -> Change this for a proper error
@@ -49,12 +49,12 @@ final class ModelPersistence {
     }
     
     func createDataFile() {
-        let episodes = loadEpisodes()
-        var userData:[EpisodeData] = []
-        for episode in episodes {
-            userData.append(EpisodeData(id: episode.id, watched: false, favorite: false, score: 0, notes: ""))
+        let tempEpisodes = loadTempEpisodes()
+        var episodes:[Episode] = []
+        for tempEpisode in tempEpisodes {
+            episodes.append(Episode(id: tempEpisode.id, url: tempEpisode.url, name: tempEpisode.name, season: tempEpisode.season, number: tempEpisode.number, airdate: tempEpisode.airdate, runtime: tempEpisode.runtime, image: tempEpisode.image, summary: tempEpisode.summary, watched: false, favorite: false, score: 0, notes: ""))
         }
-        saveData(userData: userData)
+        saveData(episodes: episodes)
     }
     
 }
