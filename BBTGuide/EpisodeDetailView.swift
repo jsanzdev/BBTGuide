@@ -15,6 +15,11 @@ struct EpisodeDetailView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    func save() {
+        episodesVM.updateEpisode(episode: detailVM.saveEpisode(episode: detailVM.episode))
+        //episodesVM.updateView()
+    }
+    
     var fillColor: Color {
         if colorScheme == .dark {
             return Color.black
@@ -54,7 +59,7 @@ struct EpisodeDetailView: View {
                                 Spacer()
                                 HStack {
                                     Button {
-                                        detailVM.toggleFav()
+                                        detailVM.favorite.toggle()
                                     } label: {
                                         Image(systemName: "star.circle.fill")
                                             .font(.system(size: 40, weight: .bold))
@@ -62,7 +67,7 @@ struct EpisodeDetailView: View {
                                     .tint(favoriteColor)
                                     .controlSize(.large)
                                     Button {
-                                        detailVM.toggleWatched()
+                                        detailVM.watched.toggle()
                                     } label: {
                                         Image(systemName:"eye.circle.fill")
                                             .font(.system(size: 40, weight: .bold))
@@ -122,15 +127,18 @@ struct EpisodeDetailView: View {
                 .padding()
                 .navigationTitle(detailVM.episode.name)
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Save") {
-                            episodesVM.updateEpisode(episode: detailVM.saveEpisode(episode: detailVM.episode))
-                            dismiss()
-                        }
-                    }
-                }
+//                .toolbar {
+//                    ToolbarItem(placement: .confirmationAction) {
+//                        Button("Save") {
+//                            episodesVM.updateView()
+//                            episodesVM.updateEpisode(episode: detailVM.saveEpisode(episode: detailVM.episode))
+//                            dismiss()
+//                        }
+//                        
+//                    }
+//                }
             }
+            .onDisappear(perform: save)
         }
     }
 }

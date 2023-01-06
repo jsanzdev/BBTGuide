@@ -9,31 +9,15 @@ import SwiftUI
 
 final class DetailViewModel:ObservableObject {
     let persistence = ModelPersistence()
-    let episodeVM = EpisodesViewModel()
+    let episodesVM = EpisodesViewModel()
     
     let episode:Episode
     
     
-    @Published var watched:Bool {
-        didSet {
-            episodeVM.updateEpisode(episode: saveEpisode(episode: episode))
-        }
-    }
-    @Published var favorite:Bool {
-        didSet {
-            episodeVM.updateEpisode(episode: saveEpisode(episode: episode))
-        }
-    }
-    @Published var score:Int {
-        didSet {
-            episodeVM.updateEpisode(episode: saveEpisode(episode: episode))
-        }
-    }
-    @Published var notes:String {
-        didSet {
-            episodeVM.updateEpisode(episode: saveEpisode(episode: episode))
-        }
-    }
+    @Published var watched = false
+    @Published var favorite = false
+    @Published var score = 0
+    @Published var notes = ""
     
     init(episode:Episode) {
         self.episode = episode

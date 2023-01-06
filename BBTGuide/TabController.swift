@@ -10,7 +10,7 @@ import SwiftUI
 struct TabController: View {
     var body: some View {
         TabView {
-            SeasonsView()
+            AllEpisodesView()
                 .tabItem {
                     Label("Seasons", systemImage: "popcorn.fill")
                 }

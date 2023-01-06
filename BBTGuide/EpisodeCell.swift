@@ -8,30 +8,29 @@
 import SwiftUI
 
 struct EpisodeCell: View {
-    
-    let episode:Episode
+    @ObservedObject var detailVM:DetailViewModel
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 HStack {
-                    Text(episode.name)
+                    Text(detailVM.episode.name)
                         .font(.headline)
                     Spacer()
-                    RatingViewCell(rating: episode.score)
+                    RatingViewCell(rating: detailVM.score)
                 }
                 . padding(.bottom, 10)
                 HStack {
                     VStack (alignment: .leading) {
-                        Text("Runtime: \(episode.runtime)")
-                        Text("Air date: \(episode.airdate)")
+                        Text("Runtime: \(detailVM.episode.runtime)")
+                        Text("Air date: \(detailVM.episode.airdate)")
                     }
                     .font(.caption)
                     Spacer()
-                    if (episode.watched) {
+                    if (detailVM.watched) {
                         Image(systemName: "eye.circle.fill")
                     }
-                    if (episode.favorite) {
+                    if (detailVM.favorite) {
                         Image(systemName: "star.circle.fill")
                     }
                 }
@@ -42,6 +41,6 @@ struct EpisodeCell: View {
 
 struct EpisodeCell_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeCell(episode: .episodeTest)
+        EpisodeCell(detailVM: DetailViewModel(episode: .episodeTest))
     }
 }

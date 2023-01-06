@@ -16,10 +16,10 @@ struct SeasonsDetailView: View {
         List {
             ForEach(season, id:\.self) { episode in
                 NavigationLink(value: episode) {
-                    EpisodeCell(episode: episode)
+                    EpisodeCell(detailVM: DetailViewModel(episode: episode))
                         .swipeActions {
                             Button {
-                                DetailViewModel(episode: episode).toggleWatched()
+                                DetailViewModel(episode: episode).watched.toggle()
                             } label: {
                                 Image(systemName: "eye.circle.fill")
                             }
@@ -27,7 +27,7 @@ struct SeasonsDetailView: View {
                         .tint(.green)
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button {
-                                DetailViewModel(episode: episode).toggleFav()
+                                DetailViewModel(episode: episode).favorite.toggle()
                                 
                             } label: {
                                 Image(systemName: "star.circle.fill")
@@ -36,12 +36,11 @@ struct SeasonsDetailView: View {
                         .tint(.yellow)
                 }
             }
+            }
+            .listStyle(.sidebar)
+            .navigationTitle("Season \(season.first!.season)")
+            .searchable(text: $episodesVM.search)
         }
-        .listStyle(.sidebar)
-        .navigationTitle("Season \(season.first!.season)")
-        .searchable(text: $episodesVM.search)
-    }
-    
 }
 
 struct SeasonsDetailView_Previews: PreviewProvider {

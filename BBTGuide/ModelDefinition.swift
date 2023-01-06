@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Episode: Codable, Identifiable, Hashable {
+struct Episode:Codable, Identifiable, Hashable {
     let id: Int
     let url: URL
     let name: String
@@ -22,7 +22,7 @@ struct Episode: Codable, Identifiable, Hashable {
     var notes:String
 }
 
-struct TempEpisode: Codable, Identifiable, Hashable {
+struct TempEpisode:Codable, Identifiable, Hashable {
     let id: Int
     let url: URL
     let name: String
