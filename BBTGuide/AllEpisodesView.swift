@@ -24,21 +24,22 @@ struct AllEpisodesView: View {
                     } label: {
                         SeasonCell(season: episodes)
                     }
-                }
-                .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                    Button {
-                    } label: {
-                        Image(systemName: "eye.circle.fill")
+                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                        Button {
+                            episodesVM.toggleWatched(number: episodes.first!.season)
+                        } label: {
+                            Image(systemName: "eye.circle.fill")
+                        }
                     }
+                    .tint(episodesVM.seasonWatched(number: episodes.first!.season) ? .red: .green)
                 }
-                .tint(.green)
+               
             }
             .listStyle(.sidebar)
             .navigationDestination(for: Episode.self) { episode in
                 EpisodeDetailView(detailVM: DetailViewModel(episode: episode))
             }
             .navigationTitle("The Big Bang Theory")
-            .searchable(text: $episodesVM.search)
         }
     }
 }

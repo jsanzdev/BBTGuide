@@ -33,6 +33,10 @@ struct TempEpisode:Codable, Identifiable, Hashable {
     let summary: String
 }
 
+struct WatchedSeasons:Codable {
+    var watched:[Int]
+}
+
 typealias TempEpisodes = [TempEpisode]
 
 typealias Episodes = [Episode]

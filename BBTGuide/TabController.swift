@@ -18,6 +18,10 @@ struct TabController: View {
                 .tabItem {
                     Label("Favourites", systemImage: "star")
                 }
+            SearchView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 extension URL {
     static let episodeDataURL = Bundle.main.url(forResource: "BigBang", withExtension: "json")!
     static let userDataURL = URL.documentsDirectory.appending(component: "userdata").appendingPathExtension("json")
+    static let watchedSeasonsURL = URL.documentsDirectory.appending(component: "watchedSeasons").appendingPathExtension("json")
 }
 
 
@@ -55,6 +56,26 @@ final class ModelPersistence {
             episodes.append(Episode(id: tempEpisode.id, url: tempEpisode.url, name: tempEpisode.name, season: tempEpisode.season, number: tempEpisode.number, airdate: tempEpisode.airdate, runtime: tempEpisode.runtime, image: tempEpisode.image, summary: tempEpisode.summary, watched: false, favorite: false, score: 0, notes: ""))
         }
         saveData(episodes: episodes)
+    }
+    
+    func loadWatched() -> WatchedSeasons {
+        do {
+            let data = try Data(contentsOf: .watchedSeasonsURL)
+            return try JSONDecoder().decode(WatchedSeasons.self, from: data)
+        } catch {
+            print("Error en la carga \(error)")
+            return WatchedSeasons(watched: [])
+        }
+    }
+    
+    func saveWatched(watched:WatchedSeasons) {
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(watched)
+            try data.write(to: .watchedSeasonsURL, options: [.atomic, .completeFileProtection])
+        } catch {
+            print("Error saving the watched Seasons data \(error)")
+        }
     }
     
 }

@@ -1,18 +1,16 @@
 //
-//  SeasonCell.swift
+//  FavoriteCell.swift
 //  BBTGuide
 //
-//  Created by Jesus Sanz on 3/12/22.
+//  Created by Jesus Sanz on 7/1/23.
 //
 
 import SwiftUI
 
-struct SeasonCell: View {
-    @EnvironmentObject var episodesVM:EpisodesViewModel
-    let season:[Episode]
+struct FavoriteCell: View {
+    @ObservedObject var detailVM:DetailViewModel
     
     @Environment(\.colorScheme) var colorScheme
-    
     var fillColor: Color {
         if colorScheme == .dark {
             return Color.black
@@ -21,33 +19,19 @@ struct SeasonCell: View {
         }
     }
     
-    var SeasonWatched:Bool {
-        let episodeCount = season.count
-        var watchedCount = 0
-        for episode in season {
-            if episode.watched {
-                watchedCount += watchedCount
-            }
-        }
-        if episodeCount == watchedCount {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     var body: some View {
         HStack {
             ZStack(alignment: .bottom) {
-                Image("season\(season.first!.season)")
+                Image(detailVM.episode.image)
                     .resizable()
                     .scaledToFit()
                 HStack (){
-                    Text("Season \(season.first!.season)")
+                    Text("Season \(detailVM.episode.season) - Episode \(detailVM.episode.number)")
                         .bold()
                     Spacer()
                     HStack {
-                        if (episodesVM.seasonWatched(number: season.first!.season)) {
+                        RatingViewCell(rating: detailVM.score)
+                        if (detailVM.watched) {
                             Image(systemName: "eye.circle.fill")
                         }
                     }
@@ -65,9 +49,8 @@ struct SeasonCell: View {
     }
 }
 
-struct SeasonCell_Previews: PreviewProvider {
+struct FavoriteCell_Previews: PreviewProvider {
     static var previews: some View {
-        SeasonCell(season: [.episodeTest])
-            .environmentObject(EpisodesViewModel())
+        FavoriteCell(detailVM: DetailViewModel(episode: .episodeTest))
     }
 }
